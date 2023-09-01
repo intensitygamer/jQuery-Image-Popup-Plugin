@@ -17,7 +17,9 @@
                 color: "#ffffff",
                 fontSize: "20px"
 
-            }
+            },
+            open: null,
+            close: null
 
         }, options);
 
@@ -73,6 +75,12 @@
                     $overlay.append($imageCaption);
 
                 }
+
+                if($.isFunction(settings.open)){
+                    settings.open.call(this);
+                }
+
+
             }
 
             function setOverlayProperties(){
@@ -124,6 +132,10 @@
             }
 
                 $closeButton.click(function(){
+
+                    if($.isFunction(settings.close)){
+                        settings.close.call(this);
+                    }
 
                     $overlay.animate({opacity: 0.1}, function(){
                         $overlay.hide();

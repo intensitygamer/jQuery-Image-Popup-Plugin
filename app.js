@@ -14,5 +14,13 @@ $("#imageGallery").imagePopup({
         exist: true,
         color: "#ffffff",
         fontSize: "40px"
+    },
+    open: function(){
+        console.log("opened");
+    },
+    close: function(){
+        console.log("closed");
     }
 });
+
+$("#imageGallery2").imagePopup();
