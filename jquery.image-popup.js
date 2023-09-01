@@ -41,8 +41,13 @@
 
                 var imageSource = $(this).children("img").attr("src");
                 $image.attr("src", imageSource);
-                $overlay.show();
 
+                if(settings.imageCaption.exist == true){
+                    var caption = $(this).children("img").attr("alt");
+                    $imageCaption.text(caption);
+                }
+
+                $overlay.css({opacity: 0.1}).show().animate({opacity: 1});
 
             });
  
@@ -57,6 +62,17 @@
                 });
 
                 $overlay.append($image);
+
+                if(settings.imageCaption.exist ==  true){
+                    $imageCaption = $("<p></p>");
+                    $imageCaption.css({
+                        "color": settings.imageCaption.color,
+                        "font-size": settings.imageCaption.fontSize
+                    });
+
+                    $overlay.append($imageCaption);
+
+                }
             }
 
             function setOverlayProperties(){
@@ -108,7 +124,10 @@
             }
 
                 $closeButton.click(function(){
-                    $overlay.hide();
+
+                    $overlay.animate({opacity: 0.1}, function(){
+                        $overlay.hide();
+                    });
 
                 });
 
